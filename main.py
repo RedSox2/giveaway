@@ -1,11 +1,15 @@
 import instaloader
+from time import sleep
 
 L = instaloader.Instaloader()
 
 post = instaloader.Post.from_shortcode(L.context, 'CpusuF5Oi1c')
 
-print(post.owner_username)
+comments = post.get_comments()
 
-for comment in post.get_comments():
-    print(comment)
-    break
+entries = []
+
+for comment in comments:
+    entries.append(comment.owner.username)
+
+print(entries)
